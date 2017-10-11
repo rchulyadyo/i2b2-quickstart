@@ -1,7 +1,6 @@
-
 load_demo_data(){
 
-	echo "loading DEMO data"
+
 	#BASE="/home/ec2-user/i2b2-install"
 	BASE=$1
 	DATA_BASE="$BASE/unzipped_packages/i2b2-data-master"
@@ -17,17 +16,8 @@ load_demo_data(){
 	cat scripts/crc_create_query_postgresql.sql|psql  -U i2b2demodata $PARG 
 	cat scripts/crc_create_uploader_postgresql.sql|psql  -U i2b2demodata $PARG 
 	cat scripts/expression_concept_demo_insert_data.sql|psql  -U i2b2demodata $PARG 
-	#cat scripts/expression_obs_demo_insert_data.sql|psql  -U i2b2demodata $PARG 
-	
-	#limiting to load only demographics
-	#for x in $(ls scripts/postgresql/*demographics*); do cat $x|psql  -U i2b2demodata $PARG;done;
-	echo "installing CRC data"
-	
-	if [ ${ONLY_DEMO} ]; then
-		cat scripts/postgresql/observation_fact_demo_demographics_insert_data.sql |psql  -U i2b2demodata $PARG
-	else
-		for x in $(ls scripts/postgresql/); do cat scripts/postgresql/$x|psql  -U i2b2demodata $PARG;done;
-	fi	
+	cat scripts/expression_obs_demo_insert_data.sql|psql  -U i2b2demodata $PARG 
+	for x in $(ls scripts/postgresql/); do cat scripts/postgresql/$x|psql  -U i2b2demodata $PARG;done;
 
 	cd "$DATA_BASE/edu.harvard.i2b2.data/Release_1-7/NewInstall/Hivedata/"
 	mkdir ~/tmp
@@ -45,12 +35,7 @@ load_demo_data(){
 	cd "$DATA_BASE/edu.harvard.i2b2.data/Release_1-7/NewInstall/Metadata/"
 	for x in $(ls scripts/*postgresql*); do echo $x;cat $x|psql -U i2b2metadata $PARG ;done;
 	for x in $(ls demo/scripts/*.sql); do echo $x;cat $x|psql -U i2b2metadata $PARG ;done;
-
-	if [ ${ONLY_DEMO} ]; then
-		cat demo/scripts/postgresql/i2b2_metadata_demographics_insert_data.sql|psql -U i2b2metadata $PARG ;
-	else
-		for x in $(ls demo/scripts/postgresql/*); do echo $x;cat $x|psql -U i2b2metadata $PARG ;done;
-	fi
+	for x in $(ls demo/scripts/postgresql/*); do echo $x;cat $x|psql -U i2b2metadata $PARG ;done;
 
 	cd "$DATA_BASE/edu.harvard.i2b2.data/Release_1-7/NewInstall/Workdata/";
 	x="scripts/create_postgresql_i2b2workdata_tables.sql"; echo $x;cat $x|psql -U i2b2workdata $PARG;
@@ -67,6 +52,3 @@ create_db_schema(){
 	echo "drop database i2b2;"|psql $PARG
 	cat $1/scripts/postgres/create_schemas.sql|psql $PARG 
 }
-
-#create_db_schema $1;
-#load_demo_data $1;
