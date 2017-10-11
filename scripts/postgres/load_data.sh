@@ -47,7 +47,7 @@ load_demo_data(){
 	for x in $(ls demo/scripts/*.sql); do echo $x;cat $x|psql -U i2b2metadata $PARG ;done;
 
 	if [ ${ONLY_DEMO} ]; then
-		cat demo/scripts/postgresql/i2b2_metadata_demographics_insert_data.sql|psql -U i2b2metadata $PARG ;done;
+		cat demo/scripts/postgresql/i2b2_metadata_demographics_insert_data.sql|psql -U i2b2metadata $PARG ;
 	else
 		for x in $(ls demo/scripts/postgresql/*); do echo $x;cat $x|psql -U i2b2metadata $PARG ;done;
 	fi
