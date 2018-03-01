@@ -10,14 +10,12 @@ else
 fi
 
 sudo yum -y install ant tar sed bzip2 git php perl wget zip unzip httpd patch
-setenforce 0
+#setenforce 0
 service iptables stop
  
 sudo -u nobody bash -c : && RUNAS="sudo -u $SUDO_USER"
 
 $RUNAS bash << _
-#git clone https://github.com/waghsk/i2b2-install
-#cd i2b2-install
 source scripts/install/install.sh
 download_i2b2_source $(pwd)
 unzip_i2b2core $(pwd)
