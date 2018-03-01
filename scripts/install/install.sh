@@ -86,9 +86,9 @@ install_java(){
 	if [ -f $JDK_FILE ]
 	then echo "FOUND $JDK_FILE" 
 	else
-	wget https://download.java.net/java/GA/jdk9/9.0.4/binaries/openjdk-9.0.4_linux-x64_bin.tar.gz
+	#wget https://download.java.net/java/GA/jdk9/9.0.4/binaries/openjdk-9.0.4_linux-x64_bin.tar.gz
 	#wget --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gzE
-	#wget https://www.dropbox.com/s/n13h7lmhn3bzy7b/jdk-8u92-linux-x64.tar.gz
+	wget https://www.dropbox.com/s/n13h7lmhn3bzy7b/jdk-8u92-linux-x64.tar.gz
 	
 	0	
 	#tar -xzf jdk-8u60-linux-x64.tar.gz
@@ -303,11 +303,18 @@ copy_axis2_to_wildfly_i2b2war;
 	ant -f master_build.xml clean build-all
 	echo "edu.harvard.i2b2.workplace.applicationdir=$SPRING_CONF_HOME/standalone/configuration/imapp" >> "$TAR_DIR/etc/spring/im_application_directory.properties"
 	ant -f master_build.xml deploy
+	
+	
 
 }
 run_wildfly(){
 
 #	cd $JBOSS_HOME
+	cd $JBOSS_HOME/standalone/deployments/
+	wget http://www.java2s.com/Code/JarDownload/postgresql/postgresql-9.2-1002-jdbc4.jar.zip
+	unzip postgres*
+	cd $BASE
+	
 	sh $JBOSS_HOME/bin/standalone.sh
 }
 
