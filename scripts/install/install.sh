@@ -312,10 +312,6 @@ copy_axis2_to_wildfly_i2b2war;
 run_wildfly(){
 
 #	cd $JBOSS_HOME
-	cd $JBOSS_HOME/standalone/deployments/
-	wget http://www.java2s.com/Code/JarDownload/postgresql/postgresql-9.2-1002-jdbc4.jar.zip
-	unzip postgres*
-	cd $BASE
 	
 	sh $JBOSS_HOME/bin/standalone.sh
 }
