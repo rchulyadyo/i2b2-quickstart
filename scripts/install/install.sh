@@ -304,7 +304,9 @@ copy_axis2_to_wildfly_i2b2war;
 	echo "edu.harvard.i2b2.workplace.applicationdir=$SPRING_CONF_HOME/standalone/configuration/imapp" >> "$TAR_DIR/etc/spring/im_application_directory.properties"
 	ant -f master_build.xml deploy
 	
-	
+	for x in $(ls $JBOSS_HOME/standalone/deployments/*-ds.xml);
+		do sed -i -e 's/postgresql\-9\.2\-1002\.jdbc4\.jar/postgresql\-42\.1\.4\.jar/g' $x ;
+	done;
 
 }
 run_wildfly(){
