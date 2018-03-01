@@ -86,8 +86,9 @@ install_java(){
 	if [ -f $JDK_FILE ]
 	then echo "FOUND $JDK_FILE" 
 	else
-	#wget --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gz
-	wget https://www.dropbox.com/s/n13h7lmhn3bzy7b/jdk-8u92-linux-x64.tar.gz
+	wget https://download.java.net/java/GA/jdk9/9.0.4/binaries/openjdk-9.0.4_linux-x64_bin.tar.gz
+	#wget --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.tar.gzE
+	#wget https://www.dropbox.com/s/n13h7lmhn3bzy7b/jdk-8u92-linux-x64.tar.gz
 	
 	0	
 	#tar -xzf jdk-8u60-linux-x64.tar.gz
@@ -127,8 +128,8 @@ download_axis_jar(){
 	if [ -f $AXIS_FILE ]
 	then echo ""
 	else
-		#wget https://www.i2b2.org/software/projects/installer/$AXIS_FILE
-		wget https://www.dropbox.com/s/9c0gjqbwssubd76/axis2-1.6.2-war.zip
+		wget https://www.i2b2.org/software/projects/installer/$AXIS_FILE
+		#wget https://www.dropbox.com/s/9c0gjqbwssubd76/axis2-1.6.2-war.zip
 	fi
 		
 	if [ -d $BASE/packages/$AXIS_FILE ]; then echo "found axis dir";
