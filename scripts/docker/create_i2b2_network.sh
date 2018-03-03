@@ -18,6 +18,7 @@ echo "PWD;$(pwd)"
 #Docker App Path
 APP=i2b2-wildfly
 DAP=$DOCKER_HOME/$APP
+
 if [ -d $DAP ]; then
 	echo "found $DAP"
 else
@@ -52,6 +53,7 @@ else
 
 fi
 
+
 APP=i2b2-web
 DAP="$DOCKER_HOME/$APP"
 
@@ -61,7 +63,6 @@ else
 	mkdir -p "$DAP" && echo "created $DAP"
 	echo "BASE:$BASE DIP:$DIP DAP:$DAP"
 	source $BASE/scripts/install/centos_sudo_install.sh $BASE
-	DIP=$2
 	copy_webclient_dir $BASE $DIP $DAP
 
 	cp -rv $BASE/conf/httpd/* $DAP
@@ -111,7 +112,7 @@ else
 	#docker tag i2b2
 	CID=$(docker ps -aqf "name=i2b2-empty")
 	docker commit $CID local/i2b2-pg
-	docker exec -it i2b2-pg bash -c "export PUBLIC_IP=$IP_ADD;sh update_pm_cell_data.sh; "
+	docker exec -it i2b2-pg bash -c "export PUBLIC_IP=$DIP;sh update_pm_cell_data.sh; "
 
 
 fi
