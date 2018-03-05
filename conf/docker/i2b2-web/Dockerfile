@@ -14,6 +14,7 @@ RUN chmod -v +x /run-httpd.sh
 
 #ADD ./i2b2_proxy.conf /etc/httpd/conf.d/i2b2_proxy.conf
 ADD ./i2b2_proxy.conf /conftemp/etc/httpd/conf.d/i2b2_proxy.conf
+ADD ./ssl.conf /conftemp/etc/httpd/conf.d/ssl.conf
 
 ADD ./webclient /var/www/html/webclient/
 ADD ./webclient /conftemp/var/www/html/webclient/
