@@ -75,7 +75,7 @@ rm -rf $BASE/local/docker/$PAK
 docker rmi -f i2b2/$SUF:release-$TAG
 sh $BASE/scripts/docker/create_i2b2_network.sh  $BASE $IP_ADD |tee firstlog
 
-IMG=$(docker images i2b2/i2b2-$SUF --format {{.ID}})
+IMG=$(docker images local/i2b2-$SUF --format {{.ID}})
 docker tag $IMG i2b2/$PAK:release-$TAG
 docker login -u i2b2auto -p "$I2B2AUTO_PASS"
 docker push i2b2/$PAK:release-$TAG
