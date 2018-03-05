@@ -6,7 +6,7 @@ LOCAL=$BASE/local
 
 #CONFIGURE
 JBOSS_HOME=$LOCAL/wildfly-9.0.1.Final
-JAVA_HOME=$LOCAL/jdk1.8.0_60
+#JAVA_HOME=$LOCAL/jdk1.8.0_60
 AXIS_HOME=$LOCAL/axis
 ANT_HOME=$LOCAL/ant
 ##########
@@ -25,9 +25,9 @@ JBOSS_FILE=wildfly-9.0.1.Final.zip
 [ -d $AXIS_HOME ] || AXIS_HOME=$LOCAL/axis
 
 alias ant=$ANT_HOME/bin/ant
-alias java="$JAVA_HOME/bin/java"
+#alias java="$JAVA_HOME/bin/java"
 
-export JAVA_HOME=$JAVA_HOME
+#export JAVA_HOME=$JAVA_HOME
 
 echo ">>JBOSS_HOME:$JBOSS_HOME"
 [ -d $BASE/packages ] || mkdir -p $BASE/packages
@@ -39,7 +39,7 @@ echo ">>>ran config"
 check_homes_for_install(){
 	[ -d $LOCAL ] || mkdir $LOCAL	
 
-	[ -d $JAVA_HOME ] && echo "found JAVA_HOME:$JAVA_HOME"|| install_java
+	#[ -d $JAVA_HOME ] && echo "found JAVA_HOME:$JAVA_HOME"|| install_java
 	[ -d $ANT_HOME ] && echo "found ANT_HOME:$ANT_HOME"|| install_ant
 	[ -d $AXIS_HOME ] && echo "found AXIS_HOME:$AXIS_HOME"|| download_axis_jar;
 	[ -d $JBOSS_HOME ] && echo "found JBOSS_HOME:$JBOSS_HOME"|| download_wildfly && install_wildfly	

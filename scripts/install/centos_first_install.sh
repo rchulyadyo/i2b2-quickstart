@@ -12,6 +12,8 @@ fi
 sudo yum -y install ant tar sed bzip2 git php perl wget zip unzip httpd patch
 setenforce 0
 service iptables stop
+
+sudo yum install java-1.8.0-openjdk-devel
  
 sudo -u nobody bash -c : && RUNAS="sudo -u $SUDO_USER"
 
@@ -29,7 +31,6 @@ source scripts/install/centos_sudo_install.sh
 install_httpd
 install_i2b2webclient $(pwd) $IP
 
-#install_i2b2admin
 install_postgres
 
 $RUNAS bash << _

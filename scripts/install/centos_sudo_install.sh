@@ -11,16 +11,17 @@ install_postgres(){
 	else
 		#sudo yum install -y http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-redhat94-9.4-1.noarch.rpm
 		#sudo yum install -y http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-redhat94-9.4-1.noarch.rpm	
-		sudo wget https://www.dropbox.com/s/igqmyfj8boijvaz/pgdg-centos94-9.4-1.noarch.rpm
-		sudo yum -y install pgdg-centos94-9.4-1.noarch.rpm
-                sudo yum -y install postgresql94-server postgresql94-contrib		
-		sudo rm -rf /var/lib/pgsql/9.4/
-		sudo mkdir /var/lib/pgsql/9.4/
-		chown -R postgres:postgres /var/lib/pgsql/9.4/
-		sudo [ -f /usr/pgsql-9.4/bin/postgresql94-setup ] && sudo /usr/pgsql-9.4/bin/postgresql94-setup initdb || sudo service postgresql-9.4 initdb
-		sudo chkconfig postgresql-9.4 on 
-		sudo cp conf/postgresql/pg_hba.conf  /var/lib/pgsql/9.4/data/
-		sudo service postgresql-9.4 start
+		#sudo wget https://www.dropbox.com/s/igqmyfj8boijvaz/pgdg-centos94-9.4-1.noarch.rpm
+		#sudo yum -y install pgdg-centos94-9.4-1.noarch.rpm
+                #sudo yum -y install postgresql94-server postgresql94-contrib		
+		sudo yum install -y postgresql-server
+		sudo rm -rf /var/lib/pgsql/
+		sudo mkdir /var/lib/pgsql/
+		chown -R postgres:postgres /var/lib/pgsql/
+		sudo [ -f /usr/pgsql/bin/postgresql94-setup ] && sudo /usr/pgsql/bin/postgresql94-setup initdb || sudo service postgresql initdb
+		sudo chkconfig postgresql on 
+		sudo cp conf/postgresql/pg_hba.conf  /var/lib/pgsql/data/
+		sudo service postgresql start
 		
 	fi
 }
