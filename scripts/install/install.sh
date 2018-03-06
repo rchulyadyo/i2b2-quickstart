@@ -307,6 +307,8 @@ copy_axis2_to_wildfly_i2b2war;
 	for x in $(ls $JBOSS_HOME/standalone/deployments/*-ds.xml);
 		do sed -i -e 's/postgresql\-9\.2\-1002\.jdbc4\.jar/postgresql\-42\.1\.4\.jar/g' $x ;
 	done;
+	cd $JBOSS_HOME/standalone/deployments/
+	wget https://www.dropbox.com/s/6gvqx1ylp27l9t9/postgresql-42.1.4.jar
 
 }
 run_wildfly(){
