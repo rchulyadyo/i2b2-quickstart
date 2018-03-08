@@ -35,3 +35,5 @@ pool-name="QueryToolDemoDS" enabled="true" use-ccm="false">
 <share-prepared-statements>false</share-prepared-statements>
 </statement>
 </datasource>
+
+</datasources>
