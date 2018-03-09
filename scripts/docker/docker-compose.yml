@@ -1,12 +1,12 @@
-version: '2'
+version: '3'
 
 services:
   i2b2-2web:
-    image: i2b2/i2b2-web:0.95
+    image: i2b2/i2b2-web:p1
     ports:
       - "80:80"
       - "443:443"
-    command: /run-httpd.sh 192.168.254.147
+    command: /run-httpd.sh localhost
     networks:
       - i2b2net
     depends_on:
@@ -21,13 +21,12 @@ services:
     depends_on:
       - i2b2-pg
   i2b2-pg:
-    image: i2b2/i2b2-pg:0.5
+    image: i2b2/i2b2-pg:p1
     ports:
       - "5432:5432"
     networks:
       - i2b2net
-    command: bash -c "/usr/lib/postgresql/9.3/bin/postgres -D /var/lib/postgresql/9.3/main -c config_file=/etc/postgresql/9.3/main/postgresql.conf ;sleep 5;export PUBLIC_IP=$IP;sh update_pm_cell_data.sh;"
-   
+    
 networks: 
     i2b2net:
        driver: bridge
