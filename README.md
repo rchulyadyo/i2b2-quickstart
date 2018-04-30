@@ -1,6 +1,11 @@
 installs i2b2 hive and webclient on centos vm, amazon webservice and Docker  (see wiki for details)
 
-### Quickstart
+### To install i2b2 using docker containers from docker hub
+
+see instructions in wiki at [link](https://github.com/waghsk/i2b2-quickstart/wiki/Docker)
+
+
+### Quickstart (to install i2b2 from source code)
 
 ssh to centos machine
 
@@ -34,5 +39,3 @@ to /var/lib/pgsql9/data/postgresql.conf
 ### To create i2b2 docker containers
 sudo sh scripts/docker/run_docker_network.sh PUBLIC_IP
 
-### To directly install i2b2 docker containers from docker hub
-see instructions in wiki at [link](https://github.com/waghsk/i2b2-quickstart/wiki/Docker)
